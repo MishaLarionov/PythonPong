@@ -1,4 +1,5 @@
-x = 2
+import math
+x = 3
 while True:
     print(x)
-    x = x**2
+    x = math.factorial(x)
