@@ -1,7 +1,7 @@
 from graphics import *
 import time
 import math
-import ballmove
+import gmcode
 window = GraphWin("Pong", 600, 600)
 window.setBackground("black")
 
@@ -53,48 +53,3 @@ def ballmove(ball, movedir):
         
 splashUX()
 gameUX()
-
-"""
-GAMEMAKER CODE FOR ADAPTATION
-
-sp = dir * movespeed;
-vsp += grav;
-//Horizontal collision & movement
-if (place_meeting(x+hsp,y,obj_wall))
-{
-    while (!place_meeting(x+sign(hsp),y,obj_wall))
-    {
-        x += sign(hsp);
-    }
-    hsp = 0;
-    dir *= -1;
-}
-x += hsp;
-//Vertical collision & movement
-if (place_meeting(x,y+vsp,obj_wall))
-{
-    while (!place_meeting(x,y+sign(vsp),obj_wall))
-    {
-        y += sign(vsp);
-    }
-    vsp = 0;
-    if (fearofheights) && !position_meeting(x+(sprite_width/2)*dir,y+(sprite_height/2)+1, obj_wall)
-    {
-        dir *= -1;
-    }
-}
-y += vsp;
-//Enemy collision
-if (place_meeting(x,y,obj_player))
-{
-    if (obj_player.y < y-20)
-    {
-        with(obj_player) vsp = -jumpspeed;
-        instance_destroy();
-    }
-    else
-    {
-        game_restart()
-    }
-}
-"""

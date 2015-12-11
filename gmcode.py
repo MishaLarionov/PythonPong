@@ -1,4 +1,5 @@
-def ballmove():
+"""
+def whatever():
     #None of the below code will work until we replace GM functions with actual code
     hsp = direction * movespeed
     vsp += grav
@@ -25,3 +26,4 @@ def ballmove():
             instance_destroy()
         else:
             game_restart()
+"""
