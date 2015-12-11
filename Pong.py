@@ -1,7 +1,12 @@
-import graphics
+from graphics import *
 import time
 import math
-window = GraphWin("Pong", 1000, 500)
+window = GraphWin("Pong", 600, 600)
+window.setBackground("black")
+rpaddle = Rectangle(Point(570, 250), Point(590, 350))
+rpaddle.setFill("white")
+rpaddle.draw(window)
+"""
 #None of the below code will work until we replace GM functions with actual code
 hsp = direction * movespeed
 vsp += grav
@@ -27,3 +32,4 @@ if place_meeting(x, y, obj_player):
         instance_destroy()
     else:
         game_restart()
+"""
