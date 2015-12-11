@@ -46,6 +46,12 @@ def gameUX():
     while True:
         # Put input functions here
         time.sleep(0.05)
+        """
+           To be inserted here:
+             1: Find ball position
+             2: See if position+(dir*4) collides with paddle
+             3: If so then dir *= -1
+        """
         ballmove(ball, movedir)
 
 def ballmove(ball, movedir):
