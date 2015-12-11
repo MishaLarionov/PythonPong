@@ -16,7 +16,7 @@ def whatever():
             y += sign(vsp)
         vsp = 0
         if fearofheights and not position_meeting(x + (sprite_width / 2) * direction, y + (sprite_height / 2) + 1, obj_wall):
-            dir *= -1
+            direction *= -1
     y += vsp
     #Enemy collision
     if place_meeting(x, y, obj_player):
