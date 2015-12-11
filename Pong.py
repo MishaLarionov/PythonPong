@@ -4,6 +4,7 @@ import math
 import ballmove
 window = GraphWin("Pong", 600, 600)
 window.setBackground("black")
+
 def splashUX():
     h1 = Text(Point(300, 50), "Welcome to PythonPong")
     h1.setFace("helvetica")
@@ -41,6 +42,15 @@ def gameUX():
     ball = Circle(Point(300, 300), 10)
     ball.setFill("grey")
     ball.draw(window)
+    movedir = 1
+    while True:
+        # Put input functions here
+        time.sleep(0.05)
+        ballmove(ball, movedir)
+
+def ballmove(ball, movedir):
+    ball.move(movedir*4,0)
+        
 splashUX()
 gameUX()
 
