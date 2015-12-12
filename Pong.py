@@ -91,6 +91,8 @@ def gameUX():
         if ball.getCenter().getX() <= 40:
             if lpaddleY + 60 > ball.getCenter().getY() > lpaddleY - 60:
                 moveY = moveY- (ball.getCenter().getY() - lpaddleY)/4
+                if moveY>6:
+                    moveY = 6
                 moveX = -moveX
             else:
                 global rScore
