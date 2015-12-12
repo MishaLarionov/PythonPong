@@ -5,6 +5,7 @@ import gmcode
 window = GraphWin("Pong", 600, 600)
 window.setBackground("black")
 background = Image(Point(0, 0), "background.png")
+
 background.draw(window)
 lScore = 0
 rScore = 0
@@ -97,6 +98,7 @@ def gameUX():
             else:
                 global rScore
                 rScore = rScore + 1
+                moveX = 0
         if not 10 < ball.getCenter().getY() < 590:
             moveY = -moveY
         ballmove(ball, moveX, moveY)
