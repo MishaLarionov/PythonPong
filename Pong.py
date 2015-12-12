@@ -113,5 +113,5 @@ def ballmove(ball, moveX, moveY):
     ball.move(moveX * 2, moveY * 2)
         
 splashUX()
-for i in range (1, 6, 1):
+while lScore != 5 and rScore !=5:
     gameUX()
