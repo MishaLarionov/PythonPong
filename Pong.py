@@ -30,6 +30,7 @@ def splashUX():
     p2.setSize(11)
     p2.setTextColor("white")
     p2.draw(window)
+    
     window.getKey()
     h1.undraw()
     h2.undraw()
@@ -60,7 +61,7 @@ def gameUX():
     rScoreDisplay.setTextColor("white")
     rScoreDisplay.draw(window)
     
-    moveX = 2
+    moveX = 3
     moveY = 0
     
     while moveX != 0:
@@ -77,10 +78,11 @@ def gameUX():
             rpaddle.move(0, -6)
         elif key == "k" and rpaddleY < 550:
             rpaddle.move(0, 6)
-        # Direction switch and boundaries
-        # TODO: Let the ball move vertically
         if ball.getCenter().getX() >= 560:
             if rpaddleY + 60 > ball.getCenter().getY() > rpaddleY - 60:
+                moveY = moveY- (ball.getCenter().getY() - rpaddleY)/4
+                if moveY>6:
+                    moveY = 6
                 moveX = -moveX
             else:
                 global lScore
@@ -88,11 +90,11 @@ def gameUX():
                 moveX = 0
         if ball.getCenter().getX() <= 40:
             if lpaddleY + 60 > ball.getCenter().getY() > lpaddleY - 60:
+                moveY = moveY- (ball.getCenter().getY() - lpaddleY)/4
                 moveX = -moveX
             else:
                 global rScore
                 rScore = rScore + 1
-                moveX = 0
         if not 10 < ball.getCenter().getY() < 590:
             moveY = -moveY
         ballmove(ball, moveX, moveY)
