@@ -6,6 +6,8 @@ window = GraphWin("Pong", 600, 600)
 window.setBackground("black")
 background = Image(Point(0, 0), "background.png")
 background.draw(window)
+lScore = 0
+rScore = 0
 
 def splashUX():
     h1 = Text(Point(300, 50), "Welcome to PythonPong")
@@ -45,9 +47,23 @@ def gameUX():
     ball = Circle(Point(300, 300), 10)
     ball.setFill("grey")
     ball.draw(window)
-    moveX = 1
+
+    lScoreDisplay = Text(Point(200, 50), lScore)
+    lScoreDisplay.setFace("helvetica")
+    lScoreDisplay.setSize(18)
+    lScoreDisplay.setTextColor("white")
+    lScoreDisplay.draw(window)
+
+    rScoreDisplay = Text(Point(400, 50), rScore)
+    rScoreDisplay.setFace("helvetica")
+    rScoreDisplay.setSize(18)
+    rScoreDisplay.setTextColor("white")
+    rScoreDisplay.draw(window)
+    
+    moveX = 2
     moveY = 0
-    while True and moveX != 0:
+    
+    while moveX != 0:
         # Input functions and logic
         time.sleep(0.02)
         key = window.checkKey()
@@ -67,20 +83,29 @@ def gameUX():
             if rpaddleY + 60 > ball.getCenter().getY() > rpaddleY - 60:
                 moveX = -moveX
             else:
-                # TODO: End round here
+                global lScore
+                lScore = lScore + 1
                 moveX = 0
         if ball.getCenter().getX() <= 40:
             if lpaddleY + 60 > ball.getCenter().getY() > lpaddleY - 60:
                 moveX = -moveX
             else:
-                # TODO: End round here
+                global rScore
+                rScore = rScore + 1
                 moveX = 0
         if not 10 < ball.getCenter().getY() < 590:
             moveY = -moveY
         ballmove(ball, moveX, moveY)
 
+    ball.undraw()
+    lpaddle.undraw()
+    rpaddle.undraw()
+    rScoreDisplay.undraw()
+    lScoreDisplay.undraw()
+
 def ballmove(ball, moveX, moveY):
     ball.move(moveX * 2, moveY * 2)
         
 splashUX()
-gameUX()
+for i in range (1, 6, 1):
+    gameUX()
