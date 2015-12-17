@@ -10,10 +10,6 @@ rScore = 0
 def splashUX():
     background = Image(Point(0, 0), "background.png")
     background.draw(window)
-    global lScore
-    global rScore
-    lScore = 0
-    rScore = 0
     
     h1 = Text(Point(300, 50), "Welcome to PythonPong")
     h1.setFace("helvetica")
@@ -44,6 +40,9 @@ def splashUX():
     background.undraw()
     
 def gameUX():
+    global rScore
+    global lScore
+    
     lpaddle = Rectangle(Point(10, 250), Point(30, 350))
     lpaddle.setFill("white")
     lpaddle.draw(window)
@@ -70,9 +69,6 @@ def gameUX():
     
     moveX = 4
     moveY = 0
-
-    global rScore
-    global lScore
     
     while moveX != 0:
         # Input functions and logic
@@ -124,14 +120,13 @@ def gameUX():
     rScoreDisplay.undraw()
     lScoreDisplay.undraw()
 
-def endGame ():
+def endGame():
     if lScore == 5:
         leftWins = Text(Point(300, 150), "Left Wins!")    
         leftWins.setFace("helvetica")
         leftWins.setSize(36)
         leftWins.setTextColor("white")
         leftWins.draw(window)
-        win = "l"
     if rScore == 5:
         rightWins = Text(Point(300, 150), "Right Wins!")    
         rightWins.setFace("helvetica")
@@ -139,7 +134,7 @@ def endGame ():
         rightWins.setTextColor("white")
         rightWins.draw(window)
 
-    playAgain = Text(Point(400, 400), "Play Again?")
+    playAgain = Text(Point(300, 400), "Play Again")
     playAgain.setFace("helvetica")
     playAgain.setSize(18)
     playAgain.setTextColor("white")
@@ -158,26 +153,30 @@ def endGame ():
     rScoreDisplay.draw(window)
     lScoreDisplay.draw(window)
 
-    playerChoice = window.getMouse()
-    if playerChoice.getY() > 388 and playerChoice.getY() < 413:
-        if playerChoice.getX() > 335 and playerChoice.getX() < 465:
-            playAgain.undraw()
-            lScoreDisplay.undraw()
-            rScoreDisplay.undraw()
-            if win == "l":
-                leftWins.undraw()
-            else:
-                rightWins.undraw()
-            
-            newGame()
+    time.sleep(5)
     
+    playAgain.undraw()
+    lScoreDisplay.undraw()
+    rScoreDisplay.undraw()
+    if lScore == 5:
+        leftWins.undraw()
+    else:
+        rightWins.undraw()
+
+    global rScore
+    global lScore
+    rScore = 0
+    lScore = 0
+    
+    newGame()
+
 def ballmove(ball, moveX, moveY):
     ball.move(moveX * 2, moveY * 2)
         
 def newGame():
-    splashUX()
     while lScore != 5 and rScore !=5:
         gameUX()
     endGame()
 
+splashUX()
 newGame()
