@@ -93,7 +93,7 @@ def gameUX():
         if ball.getCenter().getX() >= 560:
             
             if rpaddleY + 60 > ball.getCenter().getY() > rpaddleY - 60:
-                moveY = -(moveY- (ball.getCenter().getY() - rpaddleY)/14)
+                moveY = -(moveY -(ball.getCenter().getY() - rpaddleY)/14)
                 moveX = -(abs((15 - moveY**2)**0.5))
                 
             else:
@@ -103,13 +103,14 @@ def gameUX():
         if ball.getCenter().getX() <= 40:
             
             if lpaddleY + 60 > ball.getCenter().getY() > lpaddleY - 60:
-                moveY = -(moveY- (ball.getCenter().getY() - lpaddleY)/14)
+                moveY = -(moveY - (ball.getCenter().getY() - lpaddleY)/14)
                 moveX = abs((15 - moveY**2)**0.5)
                 
             else:
                 rScore = rScore + 1
                 moveX = 0
-                
+
+        #"Wall" Collisions        
         if not 10 < ball.getCenter().getY() < 590:
             moveY = -moveY
             
@@ -130,12 +131,18 @@ def endGame ():
         leftWins.setSize(36)
         leftWins.setTextColor("white")
         leftWins.draw(window)
+        win = "l"
     if rScore == 5:
         rightWins = Text(Point(300, 150), "Right Wins!")    
         rightWins.setFace("helvetica")
         rightWins.setSize(36)
         rightWins.setTextColor("white")
         rightWins.draw(window)
+
+    playAgain = Text(Point(400, 400), "Play Again?")
+    playAgain.setFace("helvetica")
+    playAgain.setSize(18)
+    playAgain.setTextColor("white")
     
     lScoreDisplay = Text(Point(200, 50), lScore)
     lScoreDisplay.setFace("helvetica")
@@ -147,9 +154,23 @@ def endGame ():
     rScoreDisplay.setSize(18)
     rScoreDisplay.setTextColor("white")
     
+    playAgain.draw(window)
     rScoreDisplay.draw(window)
     lScoreDisplay.draw(window)
 
+    playerChoice = window.getMouse()
+    if playerChoice.getY() > 388 and playerChoice.getY() < 413:
+        if playerChoice.getX() > 335 and playerChoice.getX() < 465:
+            playAgain.undraw()
+            lScoreDisplay.undraw()
+            rScoreDisplay.undraw()
+            if win == "l":
+                leftWins.undraw()
+            else:
+                rightWins.undraw()
+            
+            newGame()
+    
 def ballmove(ball, moveX, moveY):
     ball.move(moveX * 2, moveY * 2)
         
